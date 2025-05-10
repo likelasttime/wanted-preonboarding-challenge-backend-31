@@ -1,7 +1,10 @@
 package com.likelasttime.commerse.domain;
 
+import com.likelasttime.commerse.dto.request.CreateCategoriesRequest;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,4 +25,13 @@ public class ProductCategories {
     Categories categories;
 
     Boolean isPrimary;
+
+    public static ProductCategories createProductCategories(Products products,
+                                                                  Categories categories, boolean isPrimary) {
+        return ProductCategories.builder()
+                .products(products)
+                .categories(categories)
+                .isPrimary(isPrimary)
+                .build();
+    }
 }

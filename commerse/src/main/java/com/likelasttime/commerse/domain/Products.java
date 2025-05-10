@@ -1,5 +1,6 @@
 package com.likelasttime.commerse.domain;
 
+import com.likelasttime.commerse.dto.request.CreateProductRequest;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,6 +18,7 @@ public class Products extends BaseTime {
 
     String name;
 
+    @Column(unique = true)
     String slug;
 
     String shortDescription;
@@ -32,4 +34,17 @@ public class Products extends BaseTime {
     Brands brands;
 
     String status;
+
+    public static Products createProducts(CreateProductRequest createProductRequest,
+                                      Sellers sellers, Brands brands) {
+        return Products.builder()
+                .name(createProductRequest.getName())
+                .slug(createProductRequest.getSlug())
+                .shortDescription(createProductRequest.getShort_description())
+                .fullDescription(createProductRequest.getFull_description())
+                .sellers(sellers)
+                .brands(brands)
+                .status(createProductRequest.getStatus())
+                .build();
+    }
 }

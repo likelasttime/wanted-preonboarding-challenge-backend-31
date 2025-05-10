@@ -4,11 +4,8 @@ import lombok.*;
 
 @Getter
 @Builder
+@AllArgsConstructor
 //@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class SuccessResponse<T> {
+public class Response {
     private boolean success;
-
-    private T data;
-
-    private String message;
 }

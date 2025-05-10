@@ -1,7 +1,10 @@
 package com.likelasttime.commerse.domain;
 
+import com.likelasttime.commerse.dto.request.CreateOptionsRequest;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.math.BigDecimal;
 
 @Entity
 @Getter
@@ -19,11 +22,23 @@ public class ProductOptions {
 
     String name;
 
-    Double additionalPrice;
+    BigDecimal additionalPrice;
 
     String sku;
 
     Integer stock;
 
     Integer displayOrder;
+
+    public static ProductOptions createProductOptions(ProductOptionGroups productOptionGroups,
+                                                      CreateOptionsRequest createOptionsRequest) {
+        return ProductOptions.builder()
+                .productOptionGroups(productOptionGroups)
+                .name(createOptionsRequest.getName())
+                .additionalPrice(createOptionsRequest.getAdditional_price())
+                .sku(createOptionsRequest.getSku())
+                .stock(createOptionsRequest.getStock())
+                .displayOrder(createOptionsRequest.getDisplay_order())
+                .build();
+    }
 }

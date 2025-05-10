@@ -1,5 +1,6 @@
 package com.likelasttime.commerse.domain;
 
+import com.likelasttime.commerse.dto.request.CreateProductOptionGroupsRequest;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,4 +21,13 @@ public class ProductOptionGroups {
     String name;
 
     Integer displayOrder;
+
+    public static ProductOptionGroups createProductOptionGroups(Products products,
+                                                                 CreateProductOptionGroupsRequest createProductOptionGroupsRequest) {
+        return ProductOptionGroups.builder()
+                .products(products)
+                .name(createProductOptionGroupsRequest.getName())
+                .displayOrder(createProductOptionGroupsRequest.getDisplay_order())
+                .build();
+    }
 }

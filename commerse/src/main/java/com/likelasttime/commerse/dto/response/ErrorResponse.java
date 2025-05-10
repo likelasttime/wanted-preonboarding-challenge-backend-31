@@ -3,12 +3,18 @@ package com.likelasttime.commerse.dto.response;
 import com.likelasttime.commerse.exception.CommonErrorCode;
 import lombok.*;
 
-@Getter
-@Builder
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ErrorResponse {
-    private boolean success = false;
+@Getter
+public class ErrorResponse extends RuntimeException {
+    //private final String code;
 
-    private ErrorBody errorBody;
+    //private final String message;
+    private boolean success;
+
+    private ErrorBody error;
+
+    /*public ErrorResponse(final CommonErrorCode commonErrorCode) {
+        this.code = commonErrorCode.getCode();
+        this.message = commonErrorCode.getMessage();
+    }*/
 }

@@ -16,6 +16,6 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 public class CreatedAt {
     @CreatedDate
-    @Column(nullable = false, updatable = false)
+    @Column(updatable = false)
     protected LocalDateTime createdAt;
 }

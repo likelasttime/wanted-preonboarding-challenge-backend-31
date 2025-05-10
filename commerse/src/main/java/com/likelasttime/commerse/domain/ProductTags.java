@@ -20,4 +20,11 @@ public class ProductTags {
     @ManyToOne
     @JoinColumn(name = "tag_id")
     Tags tags;
+
+    public static ProductTags createProductTags(Products products, Tags tags) {
+        return ProductTags.builder()
+                .products(products)
+                .tags(tags)
+                .build();
+    }
 }

@@ -16,10 +16,10 @@ public enum CommonErrorCode {
 
     private String code;
 
-    private String description;
+    private String message;
 
-    private CommonErrorCode(String code, String description) {
+    private CommonErrorCode(String code, String message) {
         this.code = code;
-        this.description = description;
+        this.message = message;
     }
 }

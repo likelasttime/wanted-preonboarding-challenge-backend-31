@@ -1,5 +1,6 @@
 package com.likelasttime.commerse.domain;
 
+import com.likelasttime.commerse.dto.request.CreateProductImagesRequest;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,4 +29,14 @@ public class ProductImages {
     @ManyToOne
     @JoinColumn(name = "option_id")
     ProductOptions productOptions;
+
+    public static ProductImages createProductImages(Products products, CreateProductImagesRequest createProductImagesRequest) {
+        return ProductImages.builder()
+                .products(products)
+                .url(createProductImagesRequest.getUrl())
+                .altText(createProductImagesRequest.getAlt_text())
+                .isPrimary(createProductImagesRequest.getIs_primary())
+                .displayOrder(createProductImagesRequest.getDisplay_order())
+                .build();
+    }
 }

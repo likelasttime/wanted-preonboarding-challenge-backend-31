@@ -1,10 +1,11 @@
 package com.likelasttime.commerse.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.likelasttime.commerse.dto.request.CreateProductPricesRequest;
+import com.likelasttime.commerse.dto.request.CreateProductRequest;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.math.BigDecimal;
 
 @Entity
 @Getter
@@ -16,15 +17,28 @@ public class ProductPrices {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    Long productId;
+    @OneToOne
+    @JoinColumn(name = "product_id")
+    Products products;
 
-    Double basePrice;
+    BigDecimal basePrice;
 
-    Double salePrice;
+    BigDecimal salePrice;
 
-    Double costPrice;
+    BigDecimal costPrice;
 
     String currency;
 
-    Double taxRate;
+    BigDecimal taxRate;
+
+    public static ProductPrices createProductPrices(Products products, CreateProductPricesRequest createProductPricesRequest) {
+        return ProductPrices.builder()
+                .products(products)
+                .basePrice(createProductPricesRequest.getBase_price())
+                .salePrice(createProductPricesRequest.getSale_price())
+                .costPrice(createProductPricesRequest.getCost_price())
+                .currency(createProductPricesRequest.getCurrency())
+                .taxRate(createProductPricesRequest.getTax_rate())
+                .build();
+    }
 }
